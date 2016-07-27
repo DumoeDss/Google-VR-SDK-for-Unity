@@ -44,7 +44,7 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 #### 凝视标记（Gaze reticles）
 
-如果你想添加一个可视化的提示，来让用户可以看到他们的视线，你可以使用*GvrReticle* 脚本。一个简单的做法是把`GvrReticle` 预设体拖拽到Main Camera下，作为Main Camera的子物体。 It draws a dot which expands to a circle whenever you are gazing at something responsive to the trigger. If the Event Camera has a *PhysicsRaycaster*, this includes 3D objects with collider components.
+如果你想添加一个可视化的提示，来让用户可以看到他们的视线，你可以使用*GvrReticle* 脚本。一个简单的做法是把`GvrReticle` 预设体拖拽到Main Camera下，作为Main Camera的子物体。每当你注视某个物体来响应触发器的时候，它会以视线焦点为中心画一个圆。It draws a dot which expands to a circle whenever you are gazing at something responsive to the trigger.如果Event Camera 有i*PhysicsRaycaster*, this includes 3D objects with collider components.
 
 If using the `GvrGaze` script, you'll need to set the reticle as its Pointer Object. If using the `GazeInputModule`, the reticle shouldn't require any additional setup.
 
