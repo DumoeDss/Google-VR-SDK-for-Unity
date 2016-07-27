@@ -1,12 +1,12 @@
 # Google VR SDK for Unity Basics
 
-This document describes how to convert an existing Unity project to support VR using the scripts and prefabs in this plugin.
+本篇文章描述了如何通过插件中的脚本和预设体使现有的Unity项目支持VR效果。
 
-## VR viewer simulation in the Unity editor
+## 在Unity编辑器中模拟VR显示
 
-VR controls are very different than for normal mobile apps. In a VR app, you match a user's movement in the real world with your camera. Users can't tap the screen with their phone in a VR viewer, instead using the trigger on a Cardboard viewer or a Daydream controller. Finally, the user views everything in stereo, through lenses close to the screen.
+VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄像机来让用户在一个真实的世界中运动。用户在VR模式下无法点击屏幕，只能通过使用Cardboard上的开关或者Daydream的控制器来进行操作。最后，用户通过靠近屏幕的镜头看到的所有东西都是立体效果的。
 
-We've added the following extra inputs to our Unity plugins to make it easier for you to simulate the VR experience:
+我们在插件中添加了以下几种额外的输入方式，使它可以更容易的为你模拟虚拟现实的经验：
 
 - **Mouse-based head tracking**: In Play mode, if you press Alt and move the mouse around, you can pan horizontally and tilt vertically around your scene as if your head is moving a VR viewer around. Use Ctrl with the mouse to simulate tilting your head from side to side.
 
