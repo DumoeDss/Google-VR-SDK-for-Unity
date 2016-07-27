@@ -42,15 +42,15 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 要想实现在场景中与3D物体交互，需要给 *Event Camera* 添加一个*PhysicsRaycaster* 组件。你还需要给所有可交互的物体添加一个脚本来响应所生成的事件。你可以使用一个 [EventTrigger](https://docs.unity3d.com/Manual/script-EventTrigger.html) 或者在你的脚本中实现Unity的标准事件接口。还有，想要交互的物体需要有一个collider组件。
 
-#### Gaze reticles
+#### 凝视标记（Gaze reticles）
 
-If you want to add a visual cue to let the user see the point of their gaze, you can use the *GvrReticle* script. A simple way to do this is to drag and drop the `GvrReticle` prefab as a child of the Main Camera. It draws a dot which expands to a circle whenever you are gazing at something responsive to the trigger. If the Event Camera has a *PhysicsRaycaster*, this includes 3D objects with collider components.
+如果你想添加一个可视化的提示，来让用户可以看到他们的视线，你可以使用*GvrReticle* 脚本。一个简单的做法是把`GvrReticle` 预设体拖拽到Main Camera下，作为Main Camera的子物体。 It draws a dot which expands to a circle whenever you are gazing at something responsive to the trigger. If the Event Camera has a *PhysicsRaycaster*, this includes 3D objects with collider components.
 
 If using the `GvrGaze` script, you'll need to set the reticle as its Pointer Object. If using the `GazeInputModule`, the reticle shouldn't require any additional setup.
 
 **Note**: Be sure to set any raycasters to ignore the reticle's *layer*. In particular, the `Canvas`' *Graphics Raycaster*should be set to not be blocked by the reticle.
 
-### Daydream controller
+### Daydream 控制器
 
 If your application is targeting the Daydream platform, you can also use the Daydream controller as an input device. Add the `GvrControllerMain` prefab to your scene and implement the [Controller API](https://developers.google.com/vr/unity/controller-basics) to use the controller.
 
