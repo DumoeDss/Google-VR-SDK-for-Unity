@@ -18,7 +18,7 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 ## 开启立体渲染模式(stereo rendering)
 
-在Scene中创建一个Empty物体，并添加 `GvrViewer` 脚本。也可以从Prefabs文件夹中将名为`GvrViewerMain` 的prefab添加到Scene中。 点击Play之后，就可以在Game视图中看到立体渲染了。
+在Scene中创建一个Empty物体，并添加 `GvrViewer` 脚本。也可以从Prefabs文件夹中将名为`GvrViewerMain` 的预设体添加到Scene中。 点击Play之后，就可以在Game视图中看到立体渲染了。
 
 ## 与app的交互
 
@@ -34,13 +34,13 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 #### 使用 GazeInputModule
 
- `GazeInputModule` 脚本是通过用户凝视来选择物体的Unity Event System的一个输入模块。通过把 `Assets/GoogleVR/Scripts/GazeInputModule` 脚本添加到Scene中的 *EventSystem* 物体上来使用他。
+ `GazeInputModule` 脚本是Unity Event System的一个输入模块，用户可以通过凝视来选择物体。使用方法是把 `Assets/GoogleVR/Scripts/GazeInputModule` 脚本添加到Scene中的 *EventSystem* 物体上。
 
-**注意:** The order of input modules attached to *EventSystem* determines their priority, so if the`StandaloneInputModule` is higher, then it will handle events when the mouse moves. When playing in the Editor, this may interfere with using the mouse to simulate gaze, so you may wish to disable `StandaloneInputModule`, or move the `GazeInputModule` up above it in the component list.
+**注意:** 输入模块添加到 *EventSystem*的顺序决定了他们的优先级, 因此如果`StandaloneInputModule` 的优先级更高, 当鼠标移动的时候他就优先会处理事件。在编辑器中运行的时候，这可能会影响到使用鼠标来模拟凝视，因此你可能想要禁用 `StandaloneInputModule`, 或者把组件列表中的`GazeInputModule` 移动到 `StandaloneInputModule`的上面。
 
-To interact with UI elements, set the Canvas *Render Mode* to **World Space**. Set the *Event Camera* to a camera controlled by a `StereoController` script (either directly or as a parent). In most cases, this will be the Main Camera.
+要想实现与UI元素的交互，需要把Canvas的*Render Mode* 设置成 **World Space**。然后通过 `StereoController` 脚本设置一个 *Event Camera* (直接给摄像机添加脚本组件，或者把脚本添加到父物体上)。通常情况下选择的摄像机都是Main Camera。
 
-To interact with 3D objects in the scene, add a *PhysicsRaycaster* component to the Event Camera. You must also have a script on each interactive object to respond to the generated events. You could use an [EventTrigger](https://docs.unity3d.com/Manual/script-EventTrigger.html) or implement some of the standard Unity Event interfaces in your scripts. The object needs a collider component as well.
+要想实现在场景中与3D物体交互，需要给 *Event Camera* 添加一个*PhysicsRaycaster* 组件。你还需要给所有可交互的物体添加一个脚本来响应所生成的事件。你可以使用一个 [EventTrigger](https://docs.unity3d.com/Manual/script-EventTrigger.html) 或者在你的脚本中实现Unity的标准事件接口。还有，想要交互的物体需要有一个collider组件。
 
 #### Gaze reticles
 
