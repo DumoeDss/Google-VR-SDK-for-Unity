@@ -8,7 +8,7 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 我们在插件中添加了以下几种额外的输入方式，使它可以更容易的为你模拟虚拟现实的经验：
 
-- **Mouse-based head tracking**: In Play mode, if you press Alt and move the mouse around, you can pan horizontally and tilt vertically around your scene as if your head is moving a VR viewer around. Use Ctrl with the mouse to simulate tilting your head from side to side.
+- **基于鼠标的头部跟踪**: 在播放模式下，如果你按住Alt然后移动鼠标，你可以In Play mode, if you press Alt and move the mouse around, you can pan horizontally and tilt vertically around your scene as if your head is moving a VR viewer around. Use Ctrl with the mouse to simulate tilting your head from side to side.
 
 - **Simulating trigger pulls**: In Play mode, use a mouse click to simulate the action of a user using a trigger in a Cardboard viewer. You can also attach a phone by USB with the Daydream [controller emulator](https://developers.google.com/vr/concepts/dev-kit-setup) in Play mode.
 
@@ -46,7 +46,7 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 如果你想添加一个可视化的提示，来让用户可以看到他们的视线，你可以使用*GvrReticle* 脚本。一个简单的做法是把`GvrReticle` 预设体拖拽到Main Camera下，作为Main Camera的子物体。每当你注视某个物体来响应触发器的时候，它会以视线焦点为中心画一个圆。It draws a dot which expands to a circle whenever you are gazing at something responsive to the trigger.如果Event Camera 有i*PhysicsRaycaster*, this includes 3D objects with collider components.
 
-If using the `GvrGaze` script, you'll need to set the reticle as its Pointer Object. If using the `GazeInputModule`, the reticle shouldn't require any additional setup.
+如果使用 `GvrGaze` 脚本，你需要设置准星来瞄准物体。如果使用`GazeInputModule`, 则不需要对标记做额外的设置。
 
 **Note**: Be sure to set any raycasters to ignore the reticle's *layer*. In particular, the `Canvas`' *Graphics Raycaster*should be set to not be blocked by the reticle.
 
