@@ -20,7 +20,7 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 在Scene中创建一个Empty物体，并添加 `GvrViewer` 脚本。也可以从Prefabs文件夹中将名为`GvrViewerMain` 的预设体添加到Scene中。 点击Play之后，就可以在Game视图中看到立体渲染了。
 
-## 与app的交互
+## 与App的交互
 
 通过立体摄像机与应用程序交互会有一些不寻常的麻烦。当用户使用VR viewer时，不能像平常那样直接点击屏幕。所有的UI元素都必须为左右眼各制作一份，否则的话不能正常的显示（左右眼的UI会相对有些偏移，以此显示3D效果）。所有的UI元素都必须放置到虚拟空间中，这样用户才能够看的到它们（uGUI的默认Render Mode是Screen Space，因此需要更改成World Space才能够在VR模式下显示出来）。并且随着头部追踪的实现，放置UI的方式也增加了：例如，把UI放置到用户的一侧，或者高于正常的视线。
 
@@ -44,20 +44,21 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 #### 凝视标记（Gaze reticles）
 
-如果你想添加一个可视化的提示，来让用户可以看到他们的视线，你可以使用*GvrReticle* 脚本。一个简单的做法是把`GvrReticle` 预设体拖拽到Main Camera下，作为Main Camera的子物体。每当你注视某个物体来响应触发器的时候，它会以视线焦点为中心画一个圆。It draws a dot which expands to a circle whenever you are gazing at something responsive to the trigger.如果Event Camera 有i*PhysicsRaycaster*, this includes 3D objects with collider components.
+如果你想添加一个可视化的提示，来让用户可以看到他们的视线，你可以使用*GvrReticle* 脚本。一个简单的做法是把`GvrReticle` 预设体拖拽到Main Camera下，作为Main Camera的子物体。如果Event Camera 有i*PhysicsRaycaster* ，每当你注视某个带collider组件的3D物体来响应触发器的时候，它会以视线焦点为中心画一个圆。
 
 如果使用 `GvrGaze` 脚本，你需要设置准星来瞄准物体。如果使用`GazeInputModule`, 则不需要对标记做额外的设置。
 
-**Note**: Be sure to set any raycasters to ignore the reticle's *layer*. In particular, the `Canvas`' *Graphics Raycaster*should be set to not be blocked by the reticle.
+**注意**: 记得设置某些raycasters忽略reticle的层。尤其是 `Canvas` 的 *Graphics Raycaster* 需要被设置成不被reticle阻断。 
 
 ### Daydream 控制器
 
-If your application is targeting the Daydream platform, you can also use the Daydream controller as an input device. Add the `GvrControllerMain` prefab to your scene and implement the [Controller API](https://developers.google.com/vr/unity/controller-basics) to use the controller.
+如果你的应用程序是Daydream 平台，你也可以使用Daydream 控制器作为输入设备。添加 `GvrControllerMain` 预设体到游戏场景中，并通过 [Controller API](https://developers.google.com/vr/unity/controller-basics) 来使用控制器。
 
-## Deferred Rendering and Image Effects
+## 延迟渲染与图像特效
 
-These effects generally do not work correctly unless the camera using them is drawing to the full screen or target texture. But in side-by-side stereo, this is never the case: each eye only draws to one half of the screen. Trying to use these effects in this situation usually results in one of the two eyes' image being stretched across the entire screen.
+这些效果通常不能正确的工作，除非摄像机使用这些效果来绘制到完整的屏幕或目标纹理。但是在side-by-side stereo中，不会出现这样的情况：每个眼睛只绘制屏幕的一半。试图在这种情况下使用这些效果通常会导致两个眼睛的图像中的一个在整个屏幕上被拉伸。
 
-If you need to use Deferred Rendering or Image Effects, the problem is solved by rendering each eye's view first to a temporary texture (during which Unity sees it as "full screen") and afterwards blitting that texture into the window. This incurs a frame-rate penalty, so it is not enabled by default.
+如果你需要使用延迟渲染或图像特效，问题可以通过xx首先绘制每个眼睛的视野到一个临时的纹理中（在Unity中是“full Screen”）和事后切割纹理到窗口中来解决。这会导致帧速率的惩罚，所以它默认是不启用的。
 
-The `StereoController`'s **Direct Render** checkbox determines whether to draw directly into the window (faster but no effects) or into a temporary texture followed by a blit (slower but allows effects). Also, for Image Effects, be sure to replicate the main camera's Image Effect components on each eye camera. To reduce the frame rate cost, you can choose to leave out some of them.
+ `StereoController` 脚本的 **Direct Render** 复选框决定了是直接绘制到窗口（速度较快，但是没有特效）还是通过一个blit传送到临时的纹理中（速度慢，但是可以使用特效）。此外，对于图像效果，一定要把主摄像机的图像效果组件复制到每个眼睛相机上。为了降低帧率成本，你可以选择省略其中的一些。
+
