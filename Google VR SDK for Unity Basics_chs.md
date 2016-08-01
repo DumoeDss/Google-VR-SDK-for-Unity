@@ -8,13 +8,13 @@ VR的控制方式和普通的手机app不同。在一个VR app中，你通过摄
 
 我们在插件中添加了以下几种额外的输入方式，使它可以更容易的为你模拟虚拟现实的经验：
 
-- **基于鼠标的头部跟踪**: 在播放模式下，如果你按住Alt然后移动鼠标，你可以In Play mode, if you press Alt and move the mouse around, you can pan horizontally and tilt vertically around your scene as if your head is moving a VR viewer around. Use Ctrl with the mouse to simulate tilting your head from side to side.
+- **基于鼠标的头部跟踪**: 在播放模式下，按住Alt并移动鼠标，你可以在场景中转动视角，就好像是你的头在VR视角下转动一样。按住Ctrl并移动鼠标可以模拟晃动头部。
 
-- **Simulating trigger pulls**: In Play mode, use a mouse click to simulate the action of a user using a trigger in a Cardboard viewer. You can also attach a phone by USB with the Daydream [controller emulator](https://developers.google.com/vr/concepts/dev-kit-setup) in Play mode.
+- **模拟触发按钮**: 在播放模式下，点击鼠标来模拟用户在Cardboard中使用触发按钮。你也可以在播放模式下，通过USB连接手机，在手机上使用Daydream [控制模拟器](https://developers.google.com/vr/concepts/dev-kit-setup)。
 
-- **Simulating distortion correction**: In Play mode, the cameras will render with an image effect that simulates the same distortion correction for the Cardboard lenses as occurs on the phone. You can edit the *GvrViewer*properties to select a phone model and viewer model to emulate, under the **Unity Editor Emulation Settings**heading in the Inspector.
+- **模拟失真校正**: 在播放模式下，摄像机会渲染一种特殊的图像效果，来模拟Cardboard镜头在手机上的失真校正。你可以在Inspector面板中通过编辑 *GvrViewer* 脚本中 **Unity Editor Emulation Settings** 下方的属性来选择模拟不同手机型号和Viewer类型。
 
-  **Note:** This emulation setting applies only when playing the scene in the editor. It has no effect on an actual phone.
+  **注意:** 此模拟设置仅适用于在编辑器播放场景时使用，对实际的手机中没有作用。
 
 ## 开启立体渲染模式(stereo rendering)
 
@@ -61,4 +61,3 @@ These effects generally do not work correctly unless the camera using them is dr
 If you need to use Deferred Rendering or Image Effects, the problem is solved by rendering each eye's view first to a temporary texture (during which Unity sees it as "full screen") and afterwards blitting that texture into the window. This incurs a frame-rate penalty, so it is not enabled by default.
 
 The `StereoController`'s **Direct Render** checkbox determines whether to draw directly into the window (faster but no effects) or into a temporary texture followed by a blit (slower but allows effects). Also, for Image Effects, be sure to replicate the main camera's Image Effect components on each eye camera. To reduce the frame rate cost, you can choose to leave out some of them.
-
